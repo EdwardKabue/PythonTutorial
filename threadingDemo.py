@@ -7,7 +7,7 @@ start = time.perf_counter()
 def do_something(seconds):
     print(f"Sleeping {seconds} second(s)...")
     time.sleep(seconds)
-    return "Done sleeping..."
+    return f"Done sleeping...{seconds}"
 
 #Manual way of working with threads:
 #1)
@@ -45,10 +45,18 @@ def do_something(seconds):
 #     print(f2.result())
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
-    results = [executor.submit(do_something, 1) for _ in range(10)]
+    secs = [5,4,3,2,1]
+    results = executor.map(do_something, secs) #map runs the method "do_something" for each value in "secs".
 
-    for f in concurrent.futures.as_completed(results):
-        print(f.result())
+    #"results" returned in the order that they were started.
+    #threads are automatically "joined"
+    for result in results:
+        print(result)
+    
+    # results = [executor.submit(do_something, sec) for sec in secs]
+
+    # for f in concurrent.futures.as_completed(results):
+    #     print(f.result())
 
 
 
