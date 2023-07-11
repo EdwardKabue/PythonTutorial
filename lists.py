@@ -32,3 +32,13 @@ alist = [4,7,3,2,1,6]
 alist.sort()
 print(alist)
 
+#List Comprehensions
+#The syntax is [ expr for var in list ] -- the for var in list looks like a regular for-loop, but without the colon (:). The expr to its left is evaluated once for each element to give the values for the new list.
+nums = [1, 2, 3, 4]
+squares = [ n * n for n in nums ]
+print(squares)
+
+#You can add an if test to the right of the for-loop to narrow the result. The if test is evaluated for each element, including only the elements where the test is true.
+nums = [2, 8, 1, 6]
+small = [ n for n in nums if n <= 2 ]  ## [2, 1]
+print(small)
