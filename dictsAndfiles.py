@@ -41,9 +41,23 @@ list = ['a', 'b', 'c', 'd']
 
 del list[0]     ## Delete first element
 del list[-2:]   ## Delete last two elements
-print(list)      ## ['b']
+#print(list)      ## ['b']
 
 dict = {'a':1, 'b':2, 'c':3}
 del dict['b']   ## Delete 'b' entry
 #print(dict)      ## {'a':1, 'c':3}
+
+#Files
+#open file with a file handle that can be used to read a file in the usual way.
+# f = open('foo.txt', 'rt', encoding='utf-8')
+
+# for line in f:   ## iterates over the lines of the file
+#     print(line, end='')  ## end='' so print does not add an end-of-line char since 'line' already includes the end-of-line.
+
+# f.close() #use f.close() when finished.
+
+#Files Unicode
+with open('foo.txt', encoding='utf-8', mode='at') as f:
+    f.write('\u20ACunicode\u20AC\n') 
+    # AKA print('\u20ACunicode\u20AC', file=f)  ## which auto-adds end='\n'
 
