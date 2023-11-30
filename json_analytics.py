@@ -7,6 +7,8 @@ packages_json = r.json() #get the json encoded content
 
 results = []
 
+t1 = time.perf_counter()
+
 for package in packages_json:
     #get name of first package.
     package_name = package['name']
@@ -41,4 +43,14 @@ for package in packages_json:
 
     time.sleep(r.elapsed.total_seconds())
 
-    print(package_name, package_desc, installs_30, installs_90, installs_365)
+    print(f"Got {package_name} in {r.elapsed.total_seconds()} seconds.")
+
+    #print(package_name, package_desc, installs_30, installs_90, installs_365)
+
+t2 = time.perf_counter()
+
+print(f"Finished in {t2 - t1} seconds.")
+
+#save the 'results' list in json format in a file.
+with open("package_info.json", "w") as f:
+    json.dump(results, f, indent=2)
